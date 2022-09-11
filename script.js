@@ -8,41 +8,19 @@ const newSddDate = document.querySelector("#newSdd");
 const submitButton = document.querySelector("#submit");
 
 submitButton.addEventListener("click", () => {
-  const declrationNumberString = decNumberInput.value;
-  const declrationNumber = Number(declrationNumberString);
+  const declrationNumber = Number(decNumberInput.value);
 
   // if let declrationNumber = decNumberInput.value; is kept outside ths function() it wont return the accurate value
 
   // Calculating the inception %%%%%%%%%%%%%%%%%%%%%%%
-  const masterInception = masterInceptionDateInput.value;
-
-  const masterInceptionDate = new Date(masterInception);
-
-  console.log("#################");
-  let newInceptionDate = masterInceptionDate.setMonth(
-    masterInceptionDate.getMonth() + declrationNumber
-  );
-  console.log(
-    "Master Inception:: " +
-      masterInceptionDate.getMonth() +
-      ">>>" +
-      masterInceptionDate
-  );
-  console.log(
-    new Date(
-      masterInceptionDate.setMonth(
-        masterInceptionDate.getMonth() + declrationNumber
-      )
-    )
-  );
-  console.log("#################");
+  const masterInceptionDate = new Date(masterInceptionDateInput.value);
 
   const masterInceptionDay = masterInceptionDate.getDay() + 1; // mon, tue etc..
   const masterInceptionDayOfMonth = masterInceptionDate.getDate(); // 1 - 29,30,31...
-  const masterInceptionMonth = masterInceptionDate.getMonth() + 1;
+  const masterInceptionMonth = masterInceptionDate.getMonth();
   const masterInceptionYear = masterInceptionDate.getFullYear();
 
-  let newInceptionDayOfMonth = masterInceptionDayOfMonth;
+  let newInceptionDayOfMonth = masterInceptionDayOfMonth; // We have to take the last available date of a month, not allowed to move to the next month
   let newInceptionMonthValue = 0;
   let newInceptionYear = masterInceptionYear;
 

@@ -7,3 +7,19 @@ input,
 label {
   margin: 0.4rem 0;
 }
+
+body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 30px;
+  box-sizing: border-box;
+}
+h1,
+h2,
+h3,
+h4,
+h5 {
+  padding: 2px;
+  margin: 2px;
+}

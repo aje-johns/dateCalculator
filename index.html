@@ -5,7 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-
+    <script src="index.js" defer></script>
+    <!-- <script src="script.js"></script> -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css"
+      integrity="sha512-EZLkOqwILORob+p0BXZc+Vm3RgJBOe1Iq/0fiI7r/wJgzOFZMlsqTa29UEl6v6U6gsV4uIpsNZoV32YZqrCRCQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <title>Date Calculator</title>
   </head>
   <style>
@@ -15,48 +23,52 @@
   </style>
 
   <body>
-    <h1>Input Values</h1>
-    <label for="dec">Declration Number:</label>
+    <div class="input-value">
+      <h1>Input Values</h1>
+      <label for="dec"> <h5>Declration Number:</h5></label>
 
-    <input
-      type="number"
-      id="declrationInput"
-      name="declrationInput"
-      value="0"
-      min="1"
-      max="100"
-    />
+      <input
+        type="number"
+        id="declrationInput"
+        name="declrationInput"
+        value="0"
+        min="1"
+        max="100"
+      />
 
-    <label for="start">Master's Inception date:</label>
+      <label for="start"><h5>Master's Inception date:</h5></label>
 
-    <input
-      type="date"
-      id="masterInceptionDate"
-      name="masterInceptionDate"
-      value="2022-01-01"
-      min="2018-01-01"
-      max="2018-12-31"
-    />
+      <input
+        type="date"
+        id="masterInceptionDate"
+        name="masterInceptionDate"
+        value="2022-01-01"
+        min="2018-01-01"
+        max="2018-12-31"
+      />
 
-    <label for="start">Master's Settlement Due Date : </label>
+      <label for="start"><h5>Master's Settlement Due Date :</h5> </label>
 
-    <input
-      type="date"
-      id="masterSdd"
-      name="masterSdd"
-      value="2022-01-01"
-      min="2018-01-01"
-      max="2018-12-31"
-    />
-    <button id="submit">Click</button>
-    <h1>Output Values</h1>
+      <input
+        type="date"
+        id="masterSddDate"
+        name="masterSdd"
+        value="2022-01-01"
+        min="2018-01-01"
+        max="2018-12-31"
+      />
+      <button id="submit">Click</button>
+    </div>
 
-    <label for="opInception">New Inception Date</label>
-    <input type="text" id="newInception" />
-    <label for="opSDD">New Settlement Due Date</label>
-    <input type="text" id="newSdd" />
+    <div class="output-value">
+      <h1>Output Values</h1>
+
+      <label for="opInception"><h5>New Inception Date</h5></label>
+      <input type="text" id="newInception" />
+      <label for="opSDD"><h5>New Settlement Due Date</h5></label>
+      <input type="text" id="newSdd" />
+    </div>
   </body>
-  <script src="script.js"></script>
   <script defer>
     //    &&&&&&&&&&&&&
     //    &&&&&&&&&&&&&
