@@ -1,20 +1,14 @@
 label {
-  display: block;
+  display: inline;
   font: 1rem "Fira Sans", sans-serif;
 }
 
 input,
 label {
+  display: inline-block;
   margin: 0.4rem 0;
 }
 
-body {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 30px;
-  box-sizing: border-box;
-}
 h1,
 h2,
 h3,
@@ -22,4 +16,14 @@ h4,
 h5 {
   padding: 2px;
   margin: 2px;
+}
+
+.input-value {
+  text-align: center;
+  background-color: bisque;
+}
+
+.output-value {
+  text-align: center;
+  background-color: antiquewhite;
 }

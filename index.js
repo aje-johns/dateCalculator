@@ -19,13 +19,12 @@ function generateNewMonth(declerationNumber, inputMonth) {
 
   if (calculatedNewMonth <= 12) {
     generatedValue.newMonth = calculatedNewMonth - 1;
-
     return generatedValue;
   } else if (calculatedNewMonth >= 13) {
     let calculatedNewMonthTemp = calculatedNewMonth; // usually when we get 0(13-13) we just add one year no change in month
     if (calculatedNewMonthTemp == 13) {
       generatedValue.yearsToadd = 1;
-      generatedValue.newMonth = inputMonth;
+      generatedValue.newMonth = calculatedNewMonth - 1;
 
       return generatedValue;
     } else if (calculatedNewMonthTemp > 13) {
@@ -41,14 +40,18 @@ function generateNewMonth(declerationNumber, inputMonth) {
 
 function perfect(inputMonth, inputDate) {
   const month = inputMonth;
-  const date = inputDate;
-  const month31 = [1, 3, 5, 7, 8, 10, 12];
+  let date = inputDate; // this will be changes later on
   const month30 = [4, 6, 9, 11];
-  if (month31.includes(month)) {
-    console.log("31 days");
+  //   const month31 = [1, 3, 5, 7, 8, 10, 12];
+  //   if (month31.includes(month)) {
+  //     console.log("31 days");
+  //   }
+  if (month30.includes(month) && date > 30) {
+    date = 30;
   }
-  if (month30.includes(month)) {
-    console.log("30 days");
+  if (month == 2 && date >= 28) {
+    console.log("Feb");
+    date = 28;
   }
   const month2Digit = month < 10 ? "0" + month : month;
   const date2Digit = date < 10 ? "0" + date : date;
@@ -103,12 +106,14 @@ button.addEventListener("click", () => {
     userSddMonth
   ).newMonth;
 
-  let newInceptionDate = perfect(inceptionNewMonth, userInceptionDate).date;
-  let newInceptionMonth = perfect(inceptionNewMonth, userInceptionDate).month;
+  const generatedInceptionValue = perfect(inceptionNewMonth, userInceptionDate);
+  const generatedSddValue = perfect(sddNewMonth, userSddDate);
+  let newInceptionDate = generatedInceptionValue.date;
+  let newInceptionMonth = generatedInceptionValue.month;
   let newInceptionYear = userInceptionYear + inceptionYearsToAdd;
 
-  let newSddDate = perfect(sddNewMonth, userSddDate).date;
-  let newSddMonth = perfect(sddNewMonth, userSddDate).month;
+  let newSddDate = generatedSddValue.date;
+  let newSddMonth = generatedSddValue.month;
   let newSddYear = userSddYear + sddYearsToAdd;
 
   outputInception.value = `${newInceptionDate}/${newInceptionMonth}/${newInceptionYear}`;

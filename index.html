@@ -16,58 +16,61 @@
     />
     <title>Date Calculator</title>
   </head>
-  <style>
-    /* %%%%%%%%%%%%%%%%%%%%%%%%%
-   %%%%%%%%%%%%%%%%%%%%%%%%%
-   %%%%%%%%%%%%%%%%%%%%%%%%% */
-  </style>
 
   <body>
-    <div class="input-value">
-      <h1>Input Values</h1>
-      <label for="dec"> <h5>Declration Number:</h5></label>
+    <section class="main row">
+      <div class="input-value columns six">
+        <h1>Input Values</h1>
+        <div class="container row">
+          <div class="input columns four">
+            <label for="dec"> <h5>Declration Number:</h5></label>
 
-      <input
-        type="number"
-        id="declrationInput"
-        name="declrationInput"
-        value="0"
-        min="1"
-        max="100"
-      />
+            <input
+              type="number"
+              id="declrationInput"
+              name="declrationInput"
+              value="0"
+              min="1"
+              max="100"
+            />
+          </div>
+          <div class="input columns four">
+            <label for="start"><h5>Master's Inception date:</h5></label>
 
-      <label for="start"><h5>Master's Inception date:</h5></label>
+            <input
+              type="date"
+              id="masterInceptionDate"
+              name="masterInceptionDate"
+              value="2022-01-01"
+              min="2018-01-01"
+              max="2018-12-31"
+            />
+          </div>
+          <div class="input columns four">
+            <label for="start"><h5>Master's SDD:</h5> </label>
 
-      <input
-        type="date"
-        id="masterInceptionDate"
-        name="masterInceptionDate"
-        value="2022-01-01"
-        min="2018-01-01"
-        max="2018-12-31"
-      />
+            <input
+              type="date"
+              id="masterSddDate"
+              name="masterSdd"
+              value="2022-01-01"
+              min="2018-01-01"
+              max="2018-12-31"
+            />
+          </div>
+        </div>
+        <button id="submit" class="columns eleven">Click</button>
+      </div>
 
-      <label for="start"><h5>Master's Settlement Due Date :</h5> </label>
+      <div class="output-value columns six">
+        <h1>Output Values</h1>
 
-      <input
-        type="date"
-        id="masterSddDate"
-        name="masterSdd"
-        value="2022-01-01"
-        min="2018-01-01"
-        max="2018-12-31"
-      />
-      <button id="submit">Click</button>
-    </div>
-
-    <div class="output-value">
-      <h1>Output Values</h1>
-
-      <label for="opInception"><h5>New Inception Date</h5></label>
-      <input type="text" id="newInception" />
-      <label for="opSDD"><h5>New Settlement Due Date</h5></label>
-      <input type="text" id="newSdd" />
-    </div>
+        <label for="opInception"><h5>New Inception Date</h5></label>
+        <input type="text" id="newInception" />
+        <label for="opSDD"><h5>New Settlement Due Date</h5></label>
+        <input type="text" id="newSdd" />
+      </div>
+    </section>
   </body>
   <script defer>
     //    &&&&&&&&&&&&&
