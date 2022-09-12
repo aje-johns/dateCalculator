@@ -22,7 +22,7 @@
       <div class="input-value columns six">
         <h1>Input Values</h1>
         <div class="container row">
-          <div class="input columns four">
+          <div class="input">
             <label for="dec"> <h5>Declration Number:</h5></label>
 
             <input
@@ -34,7 +34,7 @@
               max="100"
             />
           </div>
-          <div class="input columns four">
+          <div class="input">
             <label for="start"><h5>Master's Inception date:</h5></label>
 
             <input
@@ -46,8 +46,13 @@
               max="2018-12-31"
             />
           </div>
-          <div class="input columns four">
-            <label for="start"><h5>Master's SDD:</h5> </label>
+          <div class="input">
+            <label for="start"
+              ><h5>
+                Master's <br />
+                SDD:
+              </h5>
+            </label>
 
             <input
               type="date"
@@ -58,8 +63,10 @@
               max="2018-12-31"
             />
           </div>
+          <button id="submit" class="columns ten button button-primary">
+            Generate
+          </button>
         </div>
-        <button id="submit" class="columns eleven">Click</button>
       </div>
 
       <div class="output-value columns six">

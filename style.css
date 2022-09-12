@@ -14,16 +14,37 @@ h2,
 h3,
 h4,
 h5 {
+  color: rgb(207, 207, 207);
   padding: 2px;
   margin: 2px;
+}
+body {
+  background-color: rgba(0, 0, 0, 0.856);
 }
 
 .input-value {
   text-align: center;
-  background-color: bisque;
+  min-height: 400px;
+  width: 450px;
 }
 
 .output-value {
+  border: 2px solid rgb(167, 167, 167);
   text-align: center;
-  background-color: antiquewhite;
+  min-height: 400px;
+  width: 450px;
+}
+.container {
+  color: #fff;
+}
+
+section {
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 1200px) {
+  .row {
+    flex-direction: column;
+  }
 }
