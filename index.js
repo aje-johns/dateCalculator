@@ -1,6 +1,3 @@
-/////////////////////////////
-//Selecting elements////////
-/////////////////////////////
 const userInputDecNumber = document.querySelector("#declrationInput");
 const userInputInception = document.querySelector("#masterInceptionDate");
 const userInputSdd = document.querySelector("#masterSddDate");
@@ -8,114 +5,99 @@ const outputInception = document.querySelector("#newInception");
 const outputSdd = document.querySelector("#newSdd");
 const button = document.querySelector("#submit");
 
-function generateNewMonth(declerationNumber, inputMonth) {
-  let yearsToadd = 0;
-  let generatedNewMonth = 0;
-  let generatedValue = {
-    yearsToadd: yearsToadd,
-    newMonth: generatedNewMonth,
-  };
-  const calculatedNewMonth = Number(declerationNumber + inputMonth);
-
-  if (calculatedNewMonth <= 12) {
-    generatedValue.newMonth = calculatedNewMonth - 1;
-    return generatedValue;
-  } else if (calculatedNewMonth >= 13) {
-    let calculatedNewMonthTemp = calculatedNewMonth; // usually when we get 0(13-13) we just add one year no change in month
-    if (calculatedNewMonthTemp == 13) {
-      generatedValue.yearsToadd = 1;
-      generatedValue.newMonth = calculatedNewMonth - 1;
-
-      return generatedValue;
-    } else if (calculatedNewMonthTemp > 13) {
-      while (calculatedNewMonthTemp > 13) {
-        generatedValue.yearsToadd++;
-        calculatedNewMonthTemp = calculatedNewMonthTemp - 13;
-      }
-      generatedValue.newMonth = calculatedNewMonthTemp;
-      return generatedValue;
-    }
-  }
-}
-
-function perfect(inputMonth, inputDate) {
-  const month = inputMonth;
-  let date = inputDate; // this will be changes later on
-  const month30 = [4, 6, 9, 11];
-  //   const month31 = [1, 3, 5, 7, 8, 10, 12];
-  //   if (month31.includes(month)) {
-  //     console.log("31 days");
-  //   }
-  if (month30.includes(month) && date > 30) {
-    date = 30;
-  }
-  if (month == 2 && date >= 28) {
-    console.log("Feb");
-    date = 28;
-  }
-  const month2Digit = month < 10 ? "0" + month : month;
-  const date2Digit = date < 10 ? "0" + date : date;
-
-  const object = {
-    month: month2Digit,
-    date: date2Digit,
-  };
-  return object;
-}
-/////////////////////////////
-//Event Listner////////
-/////////////////////////////
 button.addEventListener("click", () => {
   const declerationNumber = Number(userInputDecNumber.value);
   const userInceptionInput = new Date(userInputInception.value);
   const userSddInput = new Date(userInputSdd.value);
 
-  const userInceptionDate = userInceptionInput.getDate();
-  const userInceptionMonth = userInceptionInput.getMonth() + 1;
-  const userInceptionYear = userInceptionInput.getFullYear();
+  class CalculateOutputDate {
+    constructor(declerationNumber, date) {
+      this.dec = declerationNumber;
+      this.enteredDate = date.getDate();
+      this.enteredMonth = date.getMonth() + 1;
+      this.enteredYear = date.getFullYear();
+    }
 
-  const userSddDate = userSddInput.getDate();
-  const userSddMonth = userSddInput.getMonth() + 1;
-  const userSddYear = userSddInput.getFullYear();
+    getNewValues = (decNumber, date, name) => {
+      console.log(`Here we have the ${name} value`);
+      const sumOfEntries = decNumber + this.enteredMonth;
+      let newMonthValue = sumOfEntries - 1;
+      let yearsToadd = 0;
+      let DateObject = {};
+      console.log("Values sum : " + sumOfEntries);
 
-  ///////////////////
-  ////Test Log///////
+      if (newMonthValue <= 12) {
+        newMonthValue = newMonthValue;
+      } else {
+        while (newMonthValue > 12) {
+          yearsToadd++;
+          newMonthValue = newMonthValue - 12;
+        }
+      }
 
-  ///////////////////
-  ///////////////////
+      function fixed2Digit(input) {
+        const output = input < 10 ? "0" + input : input;
+        return output;
+      }
 
-  ///////////////////
-  ////Output values
-  ///////////////////
+      DateObject = {
+        newMonth: fixed2Digit(newMonthValue),
+        YearsToBeAdded: yearsToadd,
+        date: fixed2Digit(this.enteredDate),
+        currentYear: fixed2Digit(this.enteredYear),
+      };
+      return DateObject;
+    };
+  }
+  function GenerateDate(dateObject) {
+    const calculatedYear = dateObject.currentYear + dateObject.YearsToBeAdded;
+    const calculatedMonth = dateObject.newMonth;
+    let currentDate = dateObject.date;
+    const monthAsNumber = Number(dateObject.newMonth);
 
-  const inceptionYearsToAdd = generateNewMonth(
+    const monthWith30days = [4, 6, 9, 11];
+
+    if (monthWith30days.includes(monthAsNumber) && currentDate > 30) {
+      currentDate = 30;
+    }
+    if (calculatedMonth == 2 && currentDate >= 28) {
+      console.log("Feb");
+      currentDate = 28;
+    }
+
+    const newDateString = `${calculatedYear}-${calculatedMonth}-${currentDate}`;
+    console.log(newDateString);
+    return new Date(newDateString);
+  }
+
+  //////////////////////////
+  // Calling and OutPut
+  //////////////////////////
+
+  // Create a new Class
+  const inceptionDate = new CalculateOutputDate(
     declerationNumber,
-    userInceptionMonth
-  ).yearsToadd;
-  const sddYearsToAdd = generateNewMonth(
+    userInceptionInput
+  );
+  const newInceptionDate = inceptionDate.getNewValues(
     declerationNumber,
-    userSddMonth
-  ).yearsToadd;
+    inceptionDate,
+    "Inception"
+  );
+  // console.log(GenerateDate(newInceptionDate));
 
-  const inceptionNewMonth = generateNewMonth(
+  const sddDate = new CalculateOutputDate(declerationNumber, userSddInput);
+  console.log(sddDate);
+  const newSddDate = sddDate.getNewValues(
     declerationNumber,
-    userInceptionMonth
-  ).newMonth;
-  const sddNewMonth = generateNewMonth(
-    declerationNumber,
-    userSddMonth
-  ).newMonth;
+    userSddInput,
+    "SDD"
+  );
+  // console.log(GenerateDate(newSddDate));
 
-  const generatedInceptionValue = perfect(inceptionNewMonth, userInceptionDate);
-  const generatedSddValue = perfect(sddNewMonth, userSddDate);
-  let newInceptionDate = generatedInceptionValue.date;
-  let newInceptionMonth = generatedInceptionValue.month;
-  let newInceptionYear = userInceptionYear + inceptionYearsToAdd;
-
-  let newSddDate = generatedSddValue.date;
-  let newSddMonth = generatedSddValue.month;
-  let newSddYear = userSddYear + sddYearsToAdd;
-
-  outputInception.value = `${newInceptionDate}/${newInceptionMonth}/${newInceptionYear}`;
-  outputSdd.value = `${newSddDate}/${newSddMonth}/${newSddYear}`;
+  function displayGeneratedData(data, target) {
+    console.log(data);
+  }
+  displayGeneratedData(GenerateDate(newInceptionDate), outputInception);
+  displayGeneratedData(GenerateDate(newSddDate), outputSdd);
 });
