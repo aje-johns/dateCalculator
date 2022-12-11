@@ -67,7 +67,14 @@ button.addEventListener("click", () => {
 
     const newDateString = `${calculatedYear}-${calculatedMonth}-${currentDate}`;
     console.log(newDateString);
-    return new Date(newDateString);
+
+    const obj = {
+      date: currentDate,
+      month: calculatedMonth,
+      year: calculatedYear,
+    };
+
+    return obj;
   }
 
   //////////////////////////
@@ -96,7 +103,13 @@ button.addEventListener("click", () => {
   // console.log(GenerateDate(newSddDate));
 
   function displayGeneratedData(data, target) {
-    console.log(data);
+    const date = data.date;
+    const month = data.month;
+    const year = data.year;
+    const opDate = year + "-" + month + "-" + date;
+
+    let outputDate = new Date(year + "-" + month + "-" + date);
+    target.value = outputDate;
   }
   displayGeneratedData(GenerateDate(newInceptionDate), outputInception);
   displayGeneratedData(GenerateDate(newSddDate), outputSdd);
