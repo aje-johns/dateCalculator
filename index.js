@@ -91,7 +91,6 @@ button.addEventListener("click", () => {
     inceptionDate,
     "Inception"
   );
-  // console.log(GenerateDate(newInceptionDate));
 
   const sddDate = new CalculateOutputDate(declerationNumber, userSddInput);
   console.log(sddDate);
@@ -100,7 +99,6 @@ button.addEventListener("click", () => {
     userSddInput,
     "SDD"
   );
-  // console.log(GenerateDate(newSddDate));
 
   function displayGeneratedData(data, target) {
     const date = data.date;
@@ -109,7 +107,8 @@ button.addEventListener("click", () => {
     const opDate = year + "-" + month + "-" + date;
 
     let outputDate = new Date(year + "-" + month + "-" + date);
-    target.value = outputDate;
+    target.value = outputDate.toLocaleDateString("en-us");
+    // outputDate.toLocaleDateString("en-us");  will print just the Date but toLocaleString will print the date as well as the time
   }
   displayGeneratedData(GenerateDate(newInceptionDate), outputInception);
   displayGeneratedData(GenerateDate(newSddDate), outputSdd);
