@@ -107,7 +107,7 @@ button.addEventListener("click", () => {
     const opDate = year + "-" + month + "-" + date;
 
     let outputDate = new Date(year + "-" + month + "-" + date);
-    target.value = outputDate.toLocaleDateString("en-us");
+    target.value = outputDate.toLocaleDateString("en-uk");
     // outputDate.toLocaleDateString("en-us");  will print just the Date but toLocaleString will print the date as well as the time
   }
   displayGeneratedData(GenerateDate(newInceptionDate), outputInception);
